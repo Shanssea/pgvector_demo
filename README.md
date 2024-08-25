@@ -1,5 +1,5 @@
 # Exploring pgvector with LangChain
-This try out is using Docker to containerize PostgreSQL with pgvector extension.
+This demo is using Docker to containerize PostgreSQL with pgvector extension.
 
 ## Installation
 You can install PostgreSQL in any way. You can find the complete official guide [here](https://github.com/pgvector/pgvector). 
