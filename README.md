@@ -1,4 +1,4 @@
-# Exploring pgvector with LangChain
+# Exploring pgvector as a Vector Database 
 This demo is using Docker to containerize PostgreSQL with pgvector extension.
 
 ## Installation
