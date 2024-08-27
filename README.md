@@ -26,6 +26,7 @@ If you want to follow this installation guide for pgvector, make sure you alread
 1. Create your database. I use CLI here. You can use PgAdmin or any other similar tools.
     ```sql
     CREATE DATABASE pgvector_sandbox;
+    \c pgvector_sandbox;
     ```
 2. Since we want to use PgVector, we need to enable the extension first. Enable the extension by running the following command. This command only running in the current database.
     ```sql
@@ -54,34 +55,24 @@ If you want to follow this installation guide for pgvector, make sure you alread
     from sqlalchemy import create_engine 
 
     # Adjust accordingly
-    conn_string = 'postgres://<USERNAME>:<PASSWORD>@host/<DATABASE_NAME>'
+    conn_string = 'postgresql://postgres:{PASSWORD}@{HOST}/{DATABASE}'
 
     # create db connection
     db = create_engine(conn_string) 
-    conn = db.connect() 
 
     # import csv file as dataframe
-    file_path = "<FILE_PATH>"
+    file_path = "{FILE_PATH}"
     df = pd.read_csv(file_path)
 
     # insert to db
-    df.to_sql('data', con=conn, if_exists='replace', index=False)
-    conn = psycopg2.connect(conn_string) 
-    conn.autocommit = True
-    cursor = conn.cursor() 
-    
-    query = '''select * from data;'''
-    cursor.execute(query) 
-    for i in cursor.fetchall(): 
-        print(i) 
-    
-    conn.close() 
+    with db.connect() as conn:
+        df.to_sql('movies', con=conn, if_exists='replace', index=False)
     ```
 6. You ready to start the demo! Please refer to [similar_movies.ipynb](./similar_movies.ipynb) to continue.
 
 </br>
 
 References:
-- [Manhattan Distance - Datacamp](https://www.datacamp.com/tutorial/manhattan-distance) 
-- [L2, Cosine Distance, and Inner Product - Ziliz](https://zilliz.com/blog/similarity-metrics-for-vector-search)
-- [Embedding in NLP - Pilehvar, Camacho-Collados ](https://books.google.co.id/books?hl=en&lr=&id=U90MEAAAQBAJ&oi=fnd&pg=PP2&dq=vector+embeddings&ots=rw4l0A6k4G&sig=gIsTMDXlSMql3EFGc63q-vRS_IY&redir_esc=y#v=onepage&q=vector%20embeddings&f=false)
+- [Manhattan Distance (Datacamp)](https://www.datacamp.com/tutorial/manhattan-distance) 
+- [L2, Cosine Distance, and Inner Product (Ziliz)](https://zilliz.com/blog/similarity-metrics-for-vector-search)
+- [Embedding in NLP (Pilehvar, Camacho-Collados)](https://books.google.co.id/books?hl=en&lr=&id=U90MEAAAQBAJ&oi=fnd&pg=PP2&dq=vector+embeddings&ots=rw4l0A6k4G&sig=gIsTMDXlSMql3EFGc63q-vRS_IY&redir_esc=y#v=onepage&q=vector%20embeddings&f=false)
