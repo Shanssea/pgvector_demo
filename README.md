@@ -1,11 +1,11 @@
 # Exploring pgvector as a Vector Database 
-This demo is using Docker to containerize PostgreSQL with pgvector extension. This demo is created to document my exploration of PgVector. I'm open to any suggestion and correction.
+This demo use Docker to containerize PostgreSQL with pgvector extension. This demo is created to document my exploration of PgVector. I'm open to any suggestion and correction.
 
 ## Installation
 You can install PostgreSQL in any way. You can find the complete official guide [here](https://github.com/pgvector/pgvector). 
 I use Docker container to deploy containerized PostgreSQL locally.
 If you want to follow this installation guide for pgvector, make sure you already have Docker installed on your device.
-1. We can install PostgreSQL easily by pulling PostgreSQL image. You can use any version for the PostgreSQl. I use version 16.
+1. We can install PostgreSQL easily by pulling the PostgreSQL image. You can use any version for the PostgreSQl. I use version 16.
     ```
     docker pull pgvector/pgvector:pg16
     ```
@@ -13,7 +13,7 @@ If you want to follow this installation guide for pgvector, make sure you alread
     ```
     docker run -d --name pgvector -e POSTGRES_PASSWORD=<YOUR_PASSWORD> -p 5432:5432 pgvector/pgvector:pg16
     ```
-3. Wait until deployment is complete. You can access the deployed container with SSH connection.
+3. Wait until deployment is complete. Then you can access the deployed container with SSH connection.
     ```
     docker exec -it pgvector sh
     ```
@@ -43,4 +43,5 @@ If you want to follow this installation guide for pgvector, make sure you alread
 References:
 - [Manhattan Distance (Datacamp)](https://www.datacamp.com/tutorial/manhattan-distance) 
 - [L2, Cosine Distance, and Inner Product (Ziliz)](https://zilliz.com/blog/similarity-metrics-for-vector-search)
+- [Indexing Method in pgvector](https://aiven.io/developer/postgresql-pgvector-indexes)
 - [Embedding in NLP (Pilehvar, Camacho-Collados)](https://books.google.co.id/books?hl=en&lr=&id=U90MEAAAQBAJ&oi=fnd&pg=PP2&dq=vector+embeddings&ots=rw4l0A6k4G&sig=gIsTMDXlSMql3EFGc63q-vRS_IY&redir_esc=y#v=onepage&q=vector%20embeddings&f=false)
