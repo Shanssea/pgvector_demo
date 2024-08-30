@@ -11,7 +11,7 @@ If you want to follow this installation guide for pgvector, make sure you alread
     ```
 2. Run the container with the downloaded image and initialize your superuser password in the environment variable. By default, the username will be <i>postgres</i>.
     ```
-    docker run -d --name pgvector -e POSTGRES_PASSWORD=<YOUR_PASSWORD> -p 5432:5432 pgvector/pgvector:pg16
+    docker run -d --name pgvector -e POSTGRES_PASSWORD=<YOUR_PASSWORD> -p 5432:5432 --shm-size=256m pgvector/pgvector:pg16
     ```
 3. Wait until deployment is complete. Then you can access the deployed container with SSH connection.
     ```
